@@ -1,0 +1,91 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-desktop" version="1.0">
+  <property name="backdrop" type="empty">
+    <property name="screen0" type="empty">
+      <property name="monitor0" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/home/vakosel/wallpaper/dark-star.jpg"/>
+        </property>
+        <property name="workspace1" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/home/vakosel/wallpaper/dark-star.jpg"/>
+        </property>
+        <property name="workspace2" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/home/vakosel/wallpaper/dark-star.jpg"/>
+        </property>
+        <property name="workspace3" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/home/vakosel/wallpaper/dark-star.jpg"/>
+        </property>
+        <property name="workspace4" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/home/vakosel/wallpaper/dark-star.jpg"/>
+        </property>
+        <property name="workspace5" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/home/vakosel/wallpaper/dark-star.jpg"/>
+        </property>
+      </property>
+      <property name="monitorHDMI-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/home/vakosel/wallpaper/dark-star.jpg"/>
+        </property>
+        <property name="workspace1" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/wallpapers/manjaro-arm/generic/manjaro-bamboo-at-night.png"/>
+        </property>
+      </property>
+      <property name="monitoreDP-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/wallpapers/manjaro-arm/generic/manjaro-bamboo-at-night.png"/>
+        </property>
+        <property name="workspace1" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/wallpapers/manjaro-arm/generic/manjaro-bamboo-at-night.png"/>
+        </property>
+      </property>
+      <property name="monitorDSI-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/wallpapers/manjaro-arm/generic/manjaro-bamboo-at-night.png"/>
+        </property>
+        <property name="workspace1" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/wallpapers/manjaro-arm/generic/manjaro-bamboo-at-night.png"/>
+        </property>
+      </property>
+    </property>
+  </property>
+  <property name="last" type="empty">
+    <property name="window-width" type="int" value="655"/>
+    <property name="window-height" type="int" value="612"/>
+  </property>
+  <property name="desktop-icons" type="empty">
+    <property name="file-icons" type="empty">
+      <property name="show-home" type="bool" value="true"/>
+      <property name="show-filesystem" type="bool" value="false"/>
+      <property name="show-trash" type="bool" value="true"/>
+      <property name="migrated-4.19" type="array">
+        <value type="string" value="f3c0ec4b3aeebb854448be2c3550a94a9086afe0"/>
+      </property>
+    </property>
+  </property>
+  <property name="last-settings-migration-version" type="uint" value="1"/>
+</channel>

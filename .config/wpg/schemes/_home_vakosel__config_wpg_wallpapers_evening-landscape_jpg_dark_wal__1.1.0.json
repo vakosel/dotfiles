@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/evening-landscape.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#222222",
+        "foreground": "#DDDDDD",
+        "cursor": "#DDDDDD"
+    },
+    "colors": {
+        "color0": "#222222",
+        "color1": "#E84F4F",
+        "color2": "#B7CE42",
+        "color3": "#FEA63C",
+        "color4": "#66AABB",
+        "color5": "#B7416E",
+        "color6": "#6D878D",
+        "color7": "#DDDDDD",
+        "color8": "#666666",
+        "color9": "#E84F4F",
+        "color10": "#B7CE42",
+        "color11": "#FEA63C",
+        "color12": "#66AABB",
+        "color13": "#B7416E",
+        "color14": "#6D878D",
+        "color15": "#DDDDDD"
+    }
+}

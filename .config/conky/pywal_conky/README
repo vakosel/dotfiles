@@ -1,0 +1,28 @@
+# Simple Conky Skin with pywal integration
+
+If you have pywal installed it will take the colors from wallpaper.
+Best to use with dwm,xwallpaper, and sxhkd (for keyboard shortcuts)
+
+It uses the bash script `conkypywalcolors.sh` to fetch colors from `~/.cache/wal/colors` 
+and paste into `latestcolors` then output of `conkyseed` and `latestcolors` will be
+merge into conkyrc.
+
+So if you want to edit the skin edit the `conkyseed` file and run bash script it will update the conkyrc file
+
+CREDITS:
+Some part of this skin has taken from `egyben simple skin`
+However I unable to find the page or link.
+If anyone knows let me know in the comments.
+
+Artworks/Wallpapers credit goes to Nikhil Mishra Creation!
+
+![img](previews/vitthal.png)
+![img](previews/omnamahshivay.png)
+![img](previews/vishnudev.png)
+![img](previews/siyaram.png)
+![img](previews/shriram.png)
+![img](previews/bhairav.png)
+![img](previews/krishnaye.png)
+![img](previews/durgama.png)
+![img](previews/lakshminarayan.png)
+![img](previews/viratrupa.png)

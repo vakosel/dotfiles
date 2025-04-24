@@ -1,0 +1,29 @@
+{
+    "checksum": "b138b65ca3ffd767cc7e395376220cc3",
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/evening-landscape.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0B0C21",
+        "foreground": "#c2c2c7",
+        "cursor": "#c2c2c7"
+    },
+    "colors": {
+        "color0": "#0B0C21",
+        "color1": "#215493",
+        "color2": "#5B619F",
+        "color3": "#9F74AA",
+        "color4": "#D37DA8",
+        "color5": "#638BC2",
+        "color6": "#F58BA7",
+        "color7": "#c2c2c7",
+        "color8": "#5c5e71",
+        "color9": "#215493",
+        "color10": "#5B619F",
+        "color11": "#9F74AA",
+        "color12": "#D37DA8",
+        "color13": "#638BC2",
+        "color14": "#F58BA7",
+        "color15": "#c2c2c7"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "checksum": "6ec3ac211d95bca96c479509f4e5e095",
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/winter-is-here.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#02050D",
+        "foreground": "#bfc0c2",
+        "cursor": "#bfc0c2"
+    },
+    "colors": {
+        "color0": "#02050D",
+        "color1": "#997A6A",
+        "color2": "#29698E",
+        "color3": "#597988",
+        "color4": "#6C909E",
+        "color5": "#5BB4D7",
+        "color6": "#91A4A9",
+        "color7": "#bfc0c2",
+        "color8": "#545966",
+        "color9": "#997A6A",
+        "color10": "#29698E",
+        "color11": "#597988",
+        "color12": "#6C909E",
+        "color13": "#5BB4D7",
+        "color14": "#91A4A9",
+        "color15": "#bfc0c2"
+    }
+}

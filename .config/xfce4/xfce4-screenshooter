@@ -1,0 +1,12 @@
+app=viewnior
+last_user=
+screenshot_dir=file:///home/vakosel/Pictures
+action=1
+delay=1
+region=1
+show_mouse=0
+custom_action_command=none
+last_extension=png
+show_in_folder=false
+show_border=1
+

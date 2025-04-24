@@ -1,0 +1,1 @@
+/home/vakosel/.config/qtile/colors.py

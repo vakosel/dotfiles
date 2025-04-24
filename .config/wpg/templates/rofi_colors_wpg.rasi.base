@@ -1,0 +1,7 @@
+    background:     {background};     /* pywal: background */
+    background-alt: {color1};         /* pywal: alt bg */
+    foreground:     {foreground};     /* pywal: foreground */
+    selected:       {color5};         /* highlight bg */
+    selected-fg:    {color7};         /* highlight text */
+    active:         {color2};         /* success green */
+    urgent:         {color1};         /* urgent red */

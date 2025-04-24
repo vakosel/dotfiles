@@ -1,0 +1,91 @@
+color1 0a0d0f
+color2 1F3D42
+color3 2B4B4F
+color4 26585D
+color5 576058
+color6 926B46
+color7 B39468
+color8 c1c2c3
+#pywalmagicabove this line
+
+background yes
+alignment middle_right
+use_xft yes
+xftfont JetBrains Mono:size=10
+xftalpha 0.1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_class conky
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_value 0
+own_window_argb_visual yes
+own_window_colour 000000
+double_buffer yes
+minimum_size 250 0
+maximum_width 300
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+stippled_borders 8
+border_margin 4
+border_width 1
+default_color white
+default_shade_color black
+default_outline_color white
+gap_x 10
+gap_y 35
+no_buffers yes
+uppercase no
+cpu_avg_samples 10
+net_avg_samples 2
+override_utf8_locale yes
+use_spacer right
+text_buffer_size 2048
+
+
+# stuff after 'TEXT' will be formatted on screen
+
+TEXT
+${color2}${font Autography:style=Bold:pixelsize=46}${time %I:%M %P %A}${font Snap.se:size=10}
+${font Autography:style=Bold:pixelsize=32}${color4}Vakosel${color2}${alignr}${time %d/%m/%g}${font Snap.se:size=10}
+${font JetBrainsMono:style=Bold}${color2}System ${font Snap.se:size=10}${hr 1}$color
+${color}OS: ${alignr}Manjaro_x64
+${color}Kernel: $alignr$Kernel
+${color}Logged in: ${alignr}${color2}$USER ${color}
+${color}Processes: ${alignr}$processes (${color2}$running_processes fut${color})
+${font JetBrainsMono:style=Bold}${color2}CPU ${font Snap.se:size=10}${hr 1}
+${color6}Uptime:$color $uptime $alignr${color5}Load:$color $loadavg
+${color6}CPU: $color ${freq} Mhz $alignr${color5} Usage:$color $cpu%
+${color2}${cpugraph}
+
+${color7}${font VictorMono:style=Bold:pixelsize=12}PROCESSORS:${font Snap.se:size=10}${color}
+${freq}MHz / ${acpitemp}C (${cpu cpu1}%) ${alignr}${freq}MHz / ${acpitemp}C (${cpu cpu2}%)
+${cpubar 5,120 cpu1} ${alignr}${cpubar 5,120 cpu2}
+${color6}${top name 1}${top cpu 1}% ${alignr}${color6}${top name 2}${top cpu 2}%
+
+${color7}${font VictorMono:style=Bold:pixelsize=12}MEMORY:${font Snap.se:size=10}${color}
+$mem / $memmax ($memperc%) ${alignr}${color6}${top_mem name 1}${top_mem mem 1}%
+${color}${membar 5,120} ${alignr}${color}${top_mem name 2}${top_mem mem 2}%
+
+${font JetBrainsMono:style=Bold}${color2}Storage ${font Snap.se:size=10}${hr 1}
+
+${color7}${font VictorMono:style=Bold:pixelsize=12}FILESYSTEM:${font Snap.se:size=10}${color} ${alignr}${fs_used /}/${fs_size /}
+   ${alignr}${color6}${fs_used_perc /}% ${color}${fs_bar 5,120 /}
+${color7}${font VictorMono:style=Bold:pixelsize=12}HOME:${font Snap.se:size=10}${color} ${alignr}${fs_used /home}/${fs_size /home}
+   ${alignr}${color6}${fs_used_perc /home}%  ${color}${fs_bar 5,120 /home}
+
+${font JetBrainsMono:style=Bold}${color2}Internet Wifi${font Snap.se:size=10}${hr 1}
+${color5 }IP Private:$color${addr wlan0} ${alignr} ${color6}Public: $color${curl ipinfo.io/ip}
+${color5}Download speed:${color} ${alignr}${downspeedf wlan0}Kb/sec
+${color2}${downspeedgraph wlan0}$color
+${color6}Downloaded: $color${totaldown wlan0} $alignr ${color6}Uploaded: $color${totalup wlan0}
+
+${font JetBrainsMono:style=Bold}${color2}Internet Ethernet ${font Snap.se:size=10}${hr 1}
+${color5 }IP Private:$color${addr enp7s0} ${alignr} ${color6}Public: $color${curl ipinfo.io/ip}
+${color5}Download speed:${color} ${alignr}${downspeedf enp7s0}Kb/sec
+${color2}${downspeedgraph enp7s0}$color
+${color6}Downloaded: $color${totaldown enp7s0} $alignr ${color6}Uploaded: $color${totalup enp7s0}

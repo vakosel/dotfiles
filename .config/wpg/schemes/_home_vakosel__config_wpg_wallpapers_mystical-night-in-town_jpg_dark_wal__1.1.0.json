@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/mystical-night-in-town.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0a0d0f",
+        "foreground": "#9ec3c3",
+        "cursor": "#9ec3c3"
+    },
+    "colors": {
+        "color0": "#0a0d0f",
+        "color1": "#1F3D42",
+        "color2": "#2B4B4F",
+        "color3": "#26585D",
+        "color4": "#576058",
+        "color5": "#926B46",
+        "color6": "#B39468",
+        "color7": "#9ec3c3",
+        "color8": "#6e8888",
+        "color9": "#1F3D42",
+        "color10": "#2B4B4F",
+        "color11": "#26585D",
+        "color12": "#576058",
+        "color13": "#926B46",
+        "color14": "#B39468",
+        "color15": "#9ec3c3"
+    }
+}
