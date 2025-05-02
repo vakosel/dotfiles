@@ -1,12 +1,12 @@
 import os
 import subprocess
 
+import colors
 from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.log_utils import ColorFormatter
-
-import colors
+from libqtile.widget import PulseVolume
 
 # Copyright (c) 2010, 2014 dequis
 # Copyright (c) 2012 Randall Ma
@@ -396,10 +396,19 @@ def init_widgets_list():
             fmt="🖴  Disk: {}",
             visible_on_warn=False,
         ),
-        widget.Volume(
+        # widget.PulseVolume(
+        #     foreground=colors[7],
+        #     padding=6,
+        #     fmt="🕫  Vol: {}",
+        # ),
+        widget.PulseVolume(
             foreground=colors[7],
             padding=6,
             fmt="🕫  Vol: {}",
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn("pavucontrol"),
+                "Button2": lazy.restart(),  # Add to force a restart on middle-click
+            },
         ),
         widget.KeyboardLayout(
             configured_keyboards=["us", "gr"],

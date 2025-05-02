@@ -6,18 +6,18 @@ from colors import COLORSCHEME
 
 # If the process doesn't exists, start one in background
 run() {
-  if ! pgrep $1; then
-    $@ &
-  fi
+	if ! pgrep $1; then
+		$@ &
+	fi
 }
 
 # Just as the above, but if the process exists, restart it
 run-or-restart() {
-  if ! pgrep $1; then
-    $@ &
-  else
-    process-restart $@
-  fi
+	if ! pgrep $1; then
+		$@ &
+	else
+		process-restart $@
+	fi
 }
 
 run picom -b
@@ -47,8 +47,6 @@ blueman-applet &
 
 # run volumeicon # Volume icon
 run nm-applet # NetworkManager icon
-# Load notification service
-systemctl stop --user xfce4-notifyd
 
 # Some process you may want to start with Qtile
 
