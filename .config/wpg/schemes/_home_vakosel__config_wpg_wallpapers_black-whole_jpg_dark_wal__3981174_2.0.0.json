@@ -1,0 +1,29 @@
+{
+    "checksum": "049cd0595cc529956100840975d24099",
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/black-whole.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0E0E0F",
+        "foreground": "#c2c2c3",
+        "cursor": "#c2c2c3"
+    },
+    "colors": {
+        "color0": "#0E0E0F",
+        "color1": "#AE6450",
+        "color2": "#C67451",
+        "color3": "#B68576",
+        "color4": "#D4926C",
+        "color5": "#46708F",
+        "color6": "#6195B2",
+        "color7": "#c2c2c3",
+        "color8": "#58586c",
+        "color9": "#AE6450",
+        "color10": "#C67451",
+        "color11": "#B68576",
+        "color12": "#D4926C",
+        "color13": "#46708F",
+        "color14": "#6195B2",
+        "color15": "#c2c2c3"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "checksum": "9d931e6a9f90b8ec300164b4c75fdbfc",
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/0y6s4vwh5zwc1.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#111110",
+        "foreground": "#c3c3c3",
+        "cursor": "#c3c3c3"
+    },
+    "colors": {
+        "color0": "#111110",
+        "color1": "#455F89",
+        "color2": "#566187",
+        "color3": "#716584",
+        "color4": "#8E6981",
+        "color5": "#A97585",
+        "color6": "#E67F80",
+        "color7": "#c3c3c3",
+        "color8": "#6d6d59",
+        "color9": "#455F89",
+        "color10": "#566187",
+        "color11": "#716584",
+        "color12": "#8E6981",
+        "color13": "#A97585",
+        "color14": "#E67F80",
+        "color15": "#c3c3c3"
+    }
+}

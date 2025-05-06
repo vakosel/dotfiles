@@ -33,5 +33,6 @@ else
 fi
 ~/Scripts/generate-theme.sh
 ~/Scripts/qtconkypywalcolors.sh
+killall -s SIGUSR1 qtile
 
 echo "✔ Script complete!"
