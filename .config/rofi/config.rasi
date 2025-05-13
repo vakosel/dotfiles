@@ -19,6 +19,13 @@ configuration {
 	window-format:              "{w} · {c} · {t}";
 }
 
+rofi.drun {
+    drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    drun-show-utilities:        true;
+    drun-show-games:            false;
+    drun-directory-1:           "/var/lib/flatpak/exports/share/applications";
+}
+
 /*****----- Global Properties -----*****/
 @import	 "colors/wpg.rasi"
 

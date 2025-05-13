@@ -1,0 +1,29 @@
+{
+    "checksum": "a6e474a818b7b5f02a463ff7ca64c9f6",
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/alena-aenami-autumn-in-budapest.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#101319",
+        "foreground": "#c3c4c5",
+        "cursor": "#c3c4c5"
+    },
+    "colors": {
+        "color0": "#101319",
+        "color1": "#EC8F77",
+        "color2": "#3A738A",
+        "color3": "#547889",
+        "color4": "#927C82",
+        "color5": "#598494",
+        "color6": "#A58C8A",
+        "color7": "#c3c4c5",
+        "color8": "#5b6270",
+        "color9": "#EC8F77",
+        "color10": "#3A738A",
+        "color11": "#547889",
+        "color12": "#927C82",
+        "color13": "#598494",
+        "color14": "#A58C8A",
+        "color15": "#c3c4c5"
+    }
+}

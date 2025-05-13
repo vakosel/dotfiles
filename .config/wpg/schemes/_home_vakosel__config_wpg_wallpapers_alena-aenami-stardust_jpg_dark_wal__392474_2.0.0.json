@@ -1,0 +1,29 @@
+{
+    "checksum": "ad2beef116e043e75f187831c058615f",
+    "wallpaper": "/home/vakosel/.config/wpg/wallpapers/alena-aenami-stardust.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#07152D",
+        "foreground": "#c1c4ca",
+        "cursor": "#c1c4ca"
+    },
+    "colors": {
+        "color0": "#07152D",
+        "color1": "#185BB6",
+        "color2": "#596EA0",
+        "color3": "#9D73B0",
+        "color4": "#638CB7",
+        "color5": "#7397C3",
+        "color6": "#9CA3C7",
+        "color7": "#c1c4ca",
+        "color8": "#5e6674",
+        "color9": "#185BB6",
+        "color10": "#596EA0",
+        "color11": "#9D73B0",
+        "color12": "#638CB7",
+        "color13": "#7397C3",
+        "color14": "#9CA3C7",
+        "color15": "#c1c4ca"
+    }
+}
