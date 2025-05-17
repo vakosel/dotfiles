@@ -17,7 +17,6 @@
         <value type="int" value="9"/>
         <value type="int" value="13"/>
         <value type="int" value="27"/>
-        <value type="int" value="15"/>
         <value type="int" value="12"/>
         <value type="int" value="19"/>
         <value type="int" value="26"/>
@@ -79,22 +78,14 @@
       <property name="menu-width" type="int" value="400"/>
       <property name="command-switchuser" type="string" value="gdmflexiserver"/>
       <property name="favorites" type="array">
-        <value type="string" value="xfce4-terminal-emulator.desktop"/>
-        <value type="string" value="xfce4-file-manager.desktop"/>
-        <value type="string" value="xfce4-mail-reader.desktop"/>
-        <value type="string" value="xfce4-web-browser.desktop"/>
       </property>
       <property name="recent" type="array">
-        <value type="string" value="xfce-keyboard-settings.desktop"/>
-        <value type="string" value="xfce-settings-manager.desktop"/>
         <value type="string" value="xfce4-screenshooter.desktop"/>
         <value type="string" value="manjaro-settings-manager.desktop"/>
         <value type="string" value="galculator.desktop"/>
         <value type="string" value="engrampa.desktop"/>
         <value type="string" value="qt5ct.desktop"/>
         <value type="string" value="kvantummanager.desktop"/>
-        <value type="string" value="xfce4-mime-settings.desktop"/>
-        <value type="string" value="xfce-session-settings.desktop"/>
       </property>
     </property>
     <property name="plugin-9" type="string" value="launcher">
@@ -136,11 +127,6 @@
     </property>
     <property name="plugin-14" type="string" value="applicationsmenu">
       <property name="button-icon" type="string" value="distributor-logo-manjaro"/>
-    </property>
-    <property name="plugin-15" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17440217771.desktop"/>
-      </property>
     </property>
   </property>
 </channel>
