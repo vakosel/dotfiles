@@ -43,7 +43,7 @@ run sxhkd # Simple X HKey daemon
 run dunst # Notification daemon
 
 #  bluetooth
-blueman-applet &
+run blueman-applet
 
 # run volumeicon # Volume icon
 run nm-applet # NetworkManager icon

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source ~/workspace/qtile/qtile-env/bin/activate
-
-python ~/workspace/qtile/bin/qtile start

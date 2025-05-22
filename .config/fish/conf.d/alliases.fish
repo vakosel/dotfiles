@@ -9,7 +9,7 @@ alias vim='$EDITOR'
 alias v='nvim'
 alias so='source ~/.config/fish/config.fish'
 alias ww='source /home/vakosel/workspace/xpython/bin/activate.fish'
-alias rr='source /home/vakosel/workspace/raspi/bin/activate.fish'
+alias rr='source /home/vakosel/workspace/raspear/bin/activate.fish'
 alias qt='source /home/vakosel/workspace/qtile/qtile-env/bin/activate.fish'
 alias qq='deactivate'
 alias pti='ptipython'
@@ -87,11 +87,6 @@ alias add-to-path='set -U fish_user_paths (pwd) $fish_user_paths'
 
 # Update `PATH` variable
 alias path-update='set -gx PATH (bash -c "source ~/git/stuff/config/path; echo \$PATH")'
-
-#  * Human readable sizes for `df`, `du`, `free` (i.e. Mb, Gb etc)
-alias df='df -h'
-alias du='du -ch'
-alias free='free -m'
 
 #  * `fs` command to show free space on physical drives
 alias fs='df -h -x squashfs -x tmpfs -x devtmpfs'

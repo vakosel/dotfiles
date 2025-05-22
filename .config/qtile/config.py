@@ -8,32 +8,6 @@ from libqtile.lazy import lazy
 from libqtile.log_utils import ColorFormatter
 from libqtile.widget import PulseVolume
 
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-
 mod = "mod4"  # Sets mod key to SUPER/WINDOWS
 myTerm = "wezterm"  # My terminal of choice
 myBrowser = "brave"  # My browser of choice
@@ -198,26 +172,7 @@ keys = [
         [mod],
         "p",
         [
-            Key([], "h", lazy.spawn("dm-hub -r"), desc="List all dmscripts"),
-            Key([], "a", lazy.spawn("dm-sounds -r"), desc="Choose ambient sound"),
-            Key([], "b", lazy.spawn("dm-setbg -r"), desc="Set background"),
-            Key([], "c", lazy.spawn("dtos-colorscheme -r"), desc="Choose color scheme"),
-            Key(
-                [],
-                "e",
-                lazy.spawn("dm-confedit -r"),
-                desc="Choose a config file to edit",
-            ),
-            Key([], "i", lazy.spawn("dm-maim -r"), desc="Take a screenshot"),
-            Key([], "k", lazy.spawn("dm-kill -r"), desc="Kill processes "),
-            Key([], "m", lazy.spawn("dm-man -r"), desc="View manpages"),
-            Key([], "n", lazy.spawn("dm-note -r"), desc="Store and copy notes"),
-            Key([], "o", lazy.spawn("dm-bookman -r"), desc="Browser bookmarks"),
-            Key([], "p", lazy.spawn("rofi-pass"), desc="Logout menu"),
-            Key([], "q", lazy.spawn("dm-logout -r"), desc="Logout menu"),
-            Key([], "r", lazy.spawn("dm-radio -r"), desc="Listen to online radio"),
-            Key([], "s", lazy.spawn("dm-websearch -r"), desc="Search various engines"),
-            Key([], "t", lazy.spawn("dm-translate -r"), desc="Translate text"),
+            Key([], "t", lazy.spawn("?"), desc="Translate text"),
         ],
     ),
 ]
@@ -286,36 +241,45 @@ layouts = [
     layout.MonadWide(**layout_theme),
     layout.Tile(**layout_theme),
     layout.Max(**layout_theme),
-    # layout.Bsp(**layout_theme),
-    # layout.Floating(**layout_theme)
-    # layout.RatioTile(**layout_theme),
-    # layout.VerticalTile(**layout_theme),
-    # layout.Matrix(**layout_theme),
-    # layout.Stack(**layout_theme, num_stacks=2),
-    # layout.Columns(**layout_theme),
-    # layout.TreeTab(
-    #     font = "Ubuntu Bold",
-    #     fontsize = 11,
-    #     border_width = 0,
-    #     bg_color = colors[0],
-    #     active_bg = colors[8],
-    #     active_fg = colors[2],
-    #     inactive_bg = colors[1],
-    #     inactive_fg = colors[0],
-    #     padding_left = 8,
-    #     padding_x = 8,
-    #     padding_y = 6,
-    #     sections = ["ONE", "TWO", "THREE"],
-    #     section_fontsize = 10,
-    #     section_fg = colors[7],
-    #     section_top = 15,
-    #     section_bottom = 15,
-    #     level_shift = 8,
-    #     vspace = 3,
-    #     panel_width = 240
-    #     ),
-    # layout.Zoomy(**layout_theme),
 ]
+
+
+# --- Helper Functions (Define them here, outside any widget list function) ---
+
+
+def get_radio_status():
+    status_file = "/home/vakosel/Scripts/qtradio/radio-status"
+    song_file = "/home/vakosel/Scripts/qtradio/radio-song.txt"
+
+    mpv_running = (
+        subprocess.run(["pgrep", "-x", "mpv"], stdout=subprocess.DEVNULL).returncode
+        == 0
+    )
+
+    if not mpv_running:
+        return "🎙️ Off Air"
+
+    if os.path.exists(song_file):
+        try:
+            with open(song_file, "r") as f:
+                song = f.read().strip()
+                if song:
+                    return f"🎧 {song}"
+        except Exception:
+            pass  # optionally log error or ignore silently
+
+    if os.path.exists(status_file):
+        try:
+            with open(status_file, "r") as f:
+                return f.read().strip()
+        except Exception:
+            pass
+
+    return "🎙️ Off Air"
+
+
+# --- End Helper Functions ---
+
 
 widget_defaults = dict(font="Ubuntu Bold", fontsize=12, padding=0, background=colors[0])
 
@@ -365,15 +329,28 @@ def init_widgets_list():
         ),
         widget.WindowName(foreground=colors[6], padding=4, max_chars=40),
         widget.GenPollText(
-            update_interval=300,
-            func=lambda: subprocess.check_output(
-                "printf $(uname -r)", shell=True, text=True
-            ),
-            foreground=colors[3],
+            func=get_radio_status,
+            name="radio_status",
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(
+                    "/home/vakosel/Scripts/qtradio/radio_toggle.sh"
+                ),  # Left click
+                "Button2": lambda: qtile.cmd_spawn(
+                    "/home/vakosel/Scripts/qtradio/radio_play.sh"
+                ),  # Middle click
+                "Button3": lambda: qtile.cmd_spawn(
+                    "/home/vakosel/Scripts/qtradio/radio_stop.sh"
+                ),  # Right click
+                "Button4": lambda: qtile.cmd_spawn(
+                    "/home/vakosel/Scripts/qtradio/radio_add_favorite.sh"
+                ),  # Scroll up: add to favorites
+            },
+            update_interval=1,
             padding=6,
-            fmt="❤  {}",
+            foreground=colors[3],
         ),
         widget.CPU(
+            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(myTerm + " -e htop")},
             format=" Cpu: {load_percent}%",
             foreground=colors[4],
             padding=6,
@@ -385,22 +362,6 @@ def init_widgets_list():
             format="{MemUsed: .0f}{mm}",
             fmt="🖥  Mem: {} used",
         ),
-        widget.DF(
-            update_interval=60,
-            foreground=colors[5],
-            padding=6,
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(myTerm + " -e df")},
-            partition="/",
-            # format = '[{p}] {uf}{m} ({r:.0f}%)',
-            format="{uf}{m} free",
-            fmt="🖴  Disk: {}",
-            visible_on_warn=False,
-        ),
-        # widget.PulseVolume(
-        #     foreground=colors[7],
-        #     padding=6,
-        #     fmt="🕫  Vol: {}",
-        # ),
         widget.PulseVolume(
             foreground=colors[7],
             padding=6,
