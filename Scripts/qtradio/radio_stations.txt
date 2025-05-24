@@ -1,1 +1,3 @@
 - 0 N - Lounge on Radio (Germany)=https://0n-lounge.radionetz.de/0n-lounge.aac
+- 0 N - Klassik on Radio (Germany)=https://0n-klassik.radionetz.de/0n-klassik.mp3
+- 0 N - Klassik on Radio (Germany)=https://0n-klassik.radionetz.de/0n-klassik.mp3
