@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
 Scripts/qtradio/radio-status
-Scirpts/qtradio/radio_stations.tmp
+Scripts/qtradio/radio_stations.tmp
 .config/nvim/lazy-lock.json
 
