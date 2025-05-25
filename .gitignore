@@ -3,4 +3,5 @@ __pycache__/
 Scripts/qtradio/radio-status
 Scripts/qtradio/radio_stations.tmp
 .config/nvim/lazy-lock.json
+.config/mpv/icyhistory.log
 

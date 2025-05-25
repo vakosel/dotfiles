@@ -1,12 +1,13 @@
 import os
 import subprocess
 
-import colors
 from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.log_utils import ColorFormatter
 from libqtile.widget import PulseVolume
+
+import colors
 
 mod = "mod4"  # Sets mod key to SUPER/WINDOWS
 myTerm = "wezterm"  # My terminal of choice
@@ -172,7 +173,24 @@ keys = [
         [mod],
         "p",
         [
-            Key([], "t", lazy.spawn("?"), desc="Translate text"),
+            Key(
+                [],
+                "c",
+                lazy.spawn("/home/vakosel/Scripts/qtradio/radio_play.sh"),
+                desc="Translate text",
+            ),
+            Key(
+                [],
+                "p",
+                lazy.spawn("/home/vakosel/Scripts/qtradio/toggle_play_pause.sh"),
+                desc="Translate text",
+            ),
+            Key(
+                [],
+                "q",
+                lazy.spawn("/home/vakosel/Scripts/qtradio/radio_stop.sh"),
+                desc="Translate text",
+            ),
         ],
     ),
 ]
@@ -244,12 +262,14 @@ layouts = [
 ]
 
 
-# --- Helper Functions (Define them here, outside any widget list function) ---
+# Your get_radio_status function (copy and paste it directly into your config.py)
+# Note: I've updated the paths within this function to use your base directory
 
 
 def get_radio_status():
-    status_file = "/home/vakosel/Scripts/qtradio/radio-status"
-    song_file = "/home/vakosel/Scripts/qtradio/radio-song.txt"
+    base_script_dir = "/home/vakosel/Scripts/qtradio"  # Define base directory here
+    status_file = os.path.join(base_script_dir, "radio-status")
+    song_file = os.path.join(base_script_dir, "radio-song.txt")
 
     mpv_running = (
         subprocess.run(["pgrep", "-x", "mpv"], stdout=subprocess.DEVNULL).returncode
@@ -266,7 +286,7 @@ def get_radio_status():
                 if song:
                     return f"🎧 {song}"
         except Exception:
-            pass  # optionally log error or ignore silently
+            pass
 
     if os.path.exists(status_file):
         try:
@@ -333,7 +353,7 @@ def init_widgets_list():
             name="radio_status",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
-                    "/home/vakosel/Scripts/qtradio/radio_toggle.sh"
+                    "/home/vakosel/Scripts/qtradio/toggle_play_pause.sh"
                 ),  # Left click
                 "Button2": lambda: qtile.cmd_spawn(
                     "/home/vakosel/Scripts/qtradio/radio_play.sh"
@@ -342,7 +362,7 @@ def init_widgets_list():
                     "/home/vakosel/Scripts/qtradio/radio_stop.sh"
                 ),  # Right click
                 "Button4": lambda: qtile.cmd_spawn(
-                    "/home/vakosel/Scripts/qtradio/radio_add_favorite.sh"
+                    "/Scripts/qtradio/radio_add_favorite.sh"
                 ),  # Scroll up: add to favorites
             },
             update_interval=1,

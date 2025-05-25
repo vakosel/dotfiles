@@ -1,50 +1,48 @@
 #!/usr/bin/env bash
 
+# Define constants
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG="/tmp/radio_play_debug.log"
+IPC_SOCKET="/tmp/mpv-radio-ipc"
+STATUS_FILE="$SCRIPT_DIR/radio-status"
+LAST_STATION_FILE="$SCRIPT_DIR/radio_stations.tmp"
 
-echo "---- $(date) ----" >>"$LOG"
-
+# Kill any existing mpv instance before starting a new one for a new station
 pkill -x mpv 2>/dev/null
+rm -f "$IPC_SOCKET" 2>/dev/null # Clean up old socket if it exists
 
+# Get station info from rofi chooser
 output=$(python3 "$SCRIPT_DIR/radio_chooser.py")
-echo "Chooser Output: $output" >>"$LOG"
 
+# Exit if chooser was cancelled or returned empty
 if [[ -z "$output" ]]; then
-  echo "No output from chooser, exiting." >>"$LOG"
   exit 0
 fi
 
-station_name=$(echo "$output" | cut -d '|' -f1)
-station_url=$(echo "$output" | cut -d '|' -f4)
+# --- ADJUSTMENT START ---
+# Parse station name and URL based on '|||' delimiter
+# Use parameter expansion to get parts before and after the last '|||'
+station_name="${output%|||*}"
+station_url="${output#*|||}"
+# --- ADJUSTMENT END ---
 
-echo "Parsed Name: '$station_name'" >>"$LOG"
-echo "Parsed URL: '$station_url'" >>"$LOG"
-
+# Exit if URL is empty (shouldn't happen with valid chooser output)
 if [[ -z "$station_url" ]]; then
-  echo "No URL found, exiting." >>"$LOG"
   exit 1
 fi
 
-# Clean name (remove emojis and extra spaces)
-clean_name=$(echo "$station_name" | sed -E 's/^🎧 //g' | xargs)
+# Clean name (remove emojis or leading/trailing spaces for display)
+# The `name_part` from radio_chooser.py already cleans leading dash and spaces,
+# so this line is more for general cleanup if emojis were present
+clean_name=$(echo "$station_name" | xargs) # xargs removes leading/trailing whitespace
 
-echo "Clean Name: '$clean_name'" >>"$LOG"
+# Update widget status file with playing emoji and clean name
+echo "🎧 $clean_name" >"$STATUS_FILE"
 
-# Write status (with emoji) for widget
-echo "🎧 $clean_name" >"$SCRIPT_DIR/radio-status"
+# Save the last selected station for potential resume on left-click
+echo "$clean_name=$station_url" >"$LAST_STATION_FILE"
 
-# Write tmp stations file in exact same clean format
-echo "$clean_name=$station_url" >"$SCRIPT_DIR/radio_stations.tmp"
-
-# Print contents for debugging
-echo "Contents of radio-status:" >>"$LOG"
-cat "$SCRIPT_DIR/radio-status" >>"$LOG"
-
-echo "Contents of radio_stations.tmp:" >>"$LOG"
-cat "$SCRIPT_DIR/radio_stations.tmp" >>"$LOG"
-
-mpv --no-video --quiet --force-window=no "$station_url" &>>"$LOG" &
-
-echo "mpv started." >>"$LOG"
-exit 0
+# Start mpv with IPC socket for control
+mpv --no-video --quiet --force-window=no \
+  --input-ipc-server="$IPC_SOCKET" \
+  --idle=no \
+  "$station_url" & # Run in background
