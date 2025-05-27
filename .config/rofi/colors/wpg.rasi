@@ -1,9 +1,9 @@
 * {
-        background:     #101319;     /* pywal: background */
-        background-alt: #EC8F77;         /* pywal: alt bg */
-        foreground:     #c3c4c5;     /* pywal: foreground */
-        selected:       #598494;         /* highlight bg */
-        selected-fg:    #c3c4c5;         /* highlight text */
-        active:         #3A738A;         /* success green */
-        urgent:         #EC8F77;         /* urgent red */
+        background:     #0a0d19;     /* pywal: background */
+        background-alt: #9B545A;         /* pywal: alt bg */
+        foreground:     #c1c2c5;     /* pywal: foreground */
+        selected:       #6D89B6;         /* highlight bg */
+        selected-fg:    #c1c2c5;         /* highlight text */
+        active:         #405EA3;         /* success green */
+        urgent:         #9B545A;         /* urgent red */
 }

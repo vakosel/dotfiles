@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
@@ -262,40 +263,76 @@ layouts = [
 ]
 
 
-# Your get_radio_status function (copy and paste it directly into your config.py)
-# Note: I've updated the paths within this function to use your base directory
+# --- Functions for Radio Widget ---
+
+base_script_dir = "/home/vakosel/Scripts/qtradio"  # Define base directory here
+
+
+# Your get_radio_status function (should be defined here or imported)
+# If your get_radio_status reads radio-status or radio-song.txt, ensure it also uses base_script_dir
 
 
 def get_radio_status():
-    base_script_dir = "/home/vakosel/Scripts/qtradio"  # Define base directory here
     status_file = os.path.join(base_script_dir, "radio-status")
     song_file = os.path.join(base_script_dir, "radio-song.txt")
 
-    mpv_running = (
-        subprocess.run(["pgrep", "-x", "mpv"], stdout=subprocess.DEVNULL).returncode
-        == 0
-    )
-
-    if not mpv_running:
-        return "🎙️ Off Air"
-
-    if os.path.exists(song_file):
-        try:
-            with open(song_file, "r") as f:
-                song = f.read().strip()
-                if song:
-                    return f"🎧 {song}"
-        except Exception:
-            pass
+    status = "🔴 Off"  # Default status
+    song_info = "Loading..."  # Default song info
 
     if os.path.exists(status_file):
         try:
-            with open(status_file, "r") as f:
-                return f.read().strip()
+            with open(status_file, "r", encoding="utf-8") as f:
+                status = f.read().strip()
         except Exception:
-            pass
+            status = "🔴 Error"
 
-    return "🎙️ Off Air"
+    if os.path.exists(song_file):
+        try:
+            with open(song_file, "r", encoding="utf-8") as f:
+                song_info = f.read().strip()
+        except Exception:
+            song_info = "Error Song"
+
+    if "🎧" in status or "⏸️" in status:
+        return f"{status} {song_info}"
+    else:
+        return status
+
+
+def get_full_radio_song():
+    full_song_file = os.path.join(base_script_dir, "radio-song-full.txt")
+    if os.path.exists(full_song_file):
+        try:
+            with open(full_song_file, "r", encoding="utf-8") as f:
+                content = f.read().strip()
+                return content if content else "No Full Song Info"
+        except Exception:
+            return "Error Reading Full Info"
+    return "No Full Song Info"
+
+
+def show_full_radio_song_notification():
+    full_title = get_full_radio_song()
+
+    if full_title == "Paused":
+        notification_text = "Radio is currently paused."
+        notification_title = "Radio Status"
+    elif full_title in [
+        "Radio Off",
+        "No Full Song Info",
+        "Error Reading Full Info",
+        "🎙️ Off Air",
+    ]:
+        notification_text = "Radio is off or no song information is available."
+        notification_title = "Radio Status"
+    else:
+        notification_text = full_title
+        notification_title = "Current Song"
+
+    notification_command = (
+        f"notify-send '{notification_title}' '{notification_text}' -t 5000"
+    )
+    qtile.cmd_spawn(notification_command)
 
 
 # --- End Helper Functions ---
@@ -364,6 +401,7 @@ def init_widgets_list():
                 "Button4": lambda: qtile.cmd_spawn(
                     "/Scripts/qtradio/radio_add_favorite.sh"
                 ),  # Scroll up: add to favorites
+                "Button5": show_full_radio_song_notification,  # Scroll down: show full song title
             },
             update_interval=1,
             padding=6,
