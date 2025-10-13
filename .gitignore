@@ -24,3 +24,9 @@ Scripts/Pywal/
 
 # Radio status cache
 Scripts/qtradio/radio-song*.txt
+
+# qtile
+.config/qtile/colors.py
+
+# dunstrc
+.config/dunst/dunstrc

@@ -29,6 +29,7 @@ alias l...='eza -al --color=always --icons=always --group-directories-first ../.
 # -----------------------------------------------------
 #  pacman and yay
 # -----------------------------------------------------
+alias update-all="sudo pacman -Syu && yay -Syu --devel --cleanafter && yay -Yc && echo (set_color green)'✅ System fully updated!'(set_color normal)"
 alias pacsyu='sudo pacman -Syu' # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu' # Refresh pkglist & update standard pkgs
 alias S="sudo pacman -S"
