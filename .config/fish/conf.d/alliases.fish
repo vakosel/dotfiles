@@ -114,9 +114,6 @@ alias wget='wget --content-disposition'
 #  * `unset` to unset enviroment variable
 alias unset 'set --erase'
 
-# htop to btop if
-alias htop='btop'
-
 # -----------------------------------------------------
 # Git
 # -----------------------------------------------------
