@@ -29,6 +29,7 @@ alias l...='eza -al --color=always --icons=always --group-directories-first ../.
 # -----------------------------------------------------
 #  pacman and yay
 # -----------------------------------------------------
+alias fastupdate='sudo pacman-mirrors --fasttrack 10 && sudo pacman -Syyu'
 alias update-all="sudo pacman -Syu && yay -Syu --devel --cleanafter && yay -Yc && echo (set_color green)'✅ System fully updated!'(set_color normal)"
 alias pacsyu='sudo pacman -Syu' # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu' # Refresh pkglist & update standard pkgs
@@ -112,6 +113,9 @@ alias wget='wget --content-disposition'
 
 #  * `unset` to unset enviroment variable
 alias unset 'set --erase'
+
+# htop to btop if
+alias htop='btop'
 
 # -----------------------------------------------------
 # Git
