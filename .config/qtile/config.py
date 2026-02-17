@@ -2,11 +2,11 @@ import os
 import subprocess
 import sys
 
-from libqtile import bar, extension, hook, layout, qtile, widget
+from libqtile import bar, extension, hook, layout, qtile 
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.log_utils import ColorFormatter
-from libqtile.widget import Volume
+from qtile_extras import widget
 
 import colors
 
@@ -421,7 +421,7 @@ def init_widgets_list():
             fmt="🖥  Mem: {} used",
         ),
         widget.Volume(
-            backend="pipewire",
+            backend="pipewire", 
             foreground=colors[7],
             padding=6,
             fmt="🕫  Vol: {}",
