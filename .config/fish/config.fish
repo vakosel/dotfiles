@@ -61,6 +61,14 @@ function fdcd
     cd (fd -H -t d | fzf --preview "tree -C {} | head -20")
 end
 
+# -----------------------------
+# SSH_AUTH_SOCK
+# -----------------------------
+if not set -q SSH_AUTH_SOCK
+    eval (ssh-agent -c)
+    ssh-add ~/.ssh/id_ed25519
+end
+
 # -----------------------------------------------------
 #  AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 # -----------------------------------------------------
@@ -78,4 +86,3 @@ end
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /home/vakosel/.lmstudio/bin
 # End of LM Studio CLI section
-
