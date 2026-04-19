@@ -60,15 +60,6 @@ function fdcd
     # Only list directories
     cd (fd -H -t d | fzf --preview "tree -C {} | head -20")
 end
-
-# -----------------------------
-# SSH_AUTH_SOCK
-# -----------------------------
-if not set -q SSH_AUTH_SOCK
-    eval (ssh-agent -c)
-    ssh-add ~/.ssh/id_ed25519
-end
-
 # -----------------------------------------------------
 #  AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 # -----------------------------------------------------
