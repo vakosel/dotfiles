@@ -1,0 +1,34 @@
+[tool.basedpyright]
+pythonversion = "3.12"
+typeCheckingMode = "basic"
+diagnosticMode = "openFilesOnly"
+# stubPath = "typings"
+extraPaths = ["typings"]
+useLibraryCodeForTypes = true
+
+# This silences the "no source files" warnings for MicroPython modules
+reportMissingModuleSource = "none"
+
+# Optional: silences warnings if stubs use different names for 'self'
+reportSelfClsParameterName = "none"
+
+
+[tool.ruff]
+line-length = 140
+target-version = "py39"
+
+[tool.ruff.lint]
+extend-select = ["PYI"]
+
+ignore = [
+  "F401",   # unused import
+  "F403",   # import *
+  "F821",   # undefined name (common in stubs)
+  "E402",   # module-level import not at top (test snippets)
+  "PYI021", # docstrings not allowed in stubs (we allow them)
+  "PYI044", # __future__ annotations
+  "PYI048", # function body rules
+  "PYI011", # default values restrictions
+  "PYI014", # argument defaults
+  "PYI029", # repr/str rules (useful in MicroPython)
+]
