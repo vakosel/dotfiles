@@ -1,4 +1,4 @@
-function dot-pull
+function git-pull
     git pull --rebase
 
     echo "Updating nvim subtree..."
