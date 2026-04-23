@@ -1,3 +1,4 @@
 [flavor]
-dark="catppuccin-mocha"
-light="catppuccin-mocha"
+# dark="catppuccin-mocha"
+dark = "gruvbox-material"
+# light="catppuccin-mocha"

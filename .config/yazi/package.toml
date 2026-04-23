@@ -23,5 +23,32 @@ use = "ndtoan96/ouch"
 rev = "406ce6c"
 hash = "f5afc904d5106ee368c8aa2ded43bd74"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "04985d1"
+hash = "c69a63981e254a3a06a11c2bf0e6af1d"
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "8e6296f"
+hash = "d9da921c3bd37ba32ee27a8a7a40461f"
+
+[[flavor.deps]]
+use = "marcosvnmelo/kanagawa-dragon"
+rev = "b9541e8"
+hash = "dc840cf225dbf6f0257617403ad43d8b"
+
+[[flavor.deps]]
+use = "ZimCodes/yazi-flavors:obsidian-glow"
+rev = "c64630b"
+hash = "cbc1d946c81cff90db37b0c696f13b17"
+
+[[flavor.deps]]
+use = "kmlupreti/ayu-dark"
+rev = "1da67a8"
+hash = "4358d2053d15bd6855968e2d4646c744"
+
+[[flavor.deps]]
+use = "matt-dong-123/gruvbox-material"
+rev = "6c36491"
+hash = "564f2335540ee2c440c3b671bc28ac60"
