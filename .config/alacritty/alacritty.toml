@@ -1,133 +1,178 @@
-# alacritty.toml
-# commented lines are the defaults
-# man 5 alacritty (>0.13) for full config manual
-
-#import = [
-#"~/.config/alacritty/catpuccin-mocha.toml",
-#"~/.config/alacritty/keybindings.toml",
-#]
+hints = {}
+debug = {}
 
 [terminal.shell]
-program               = "/usr/bin/fish"
-args                  = [ "--login", ]
-
-#working_directory     = "None"
-#live_config_reload    = true
-#ipc_socket            = true
+program = "/usr/bin/fish"
+args = ["--login"]
 
 [env]
-TERM                  = "xterm-256color"
+TERM = "xterm-256color"
 
 [window]
-#dimensions            = { columns = 0, lines = 0 }
-#position              = { x = 0, y = 0 }
-padding               = { x = 2, y = 2 }
-#dynamic_padding       = true
-decorations           = "None"
-opacity               = 0.88
-blur                  = true
-#startup_mode          = "Windowed"
-#title                 = "Alacritty"
-#dynamic_title         = true
-#class                 = { instance = "Alacritty", general = "Alacritty" }
-#decorations_theme_variant = "None"
-#resize_increments     = false
-#option_as_alt         = "None"
+decorations = "None"
+opacity = 0.88
+blur = true
 
+[window.padding]
+x = 2
+y = 2
 
 [scrolling]
-history               = 65535
-#multiplier            = 3
+history = 65_535
 
 [font]
-normal                = { family = "CaskaydiaCove Nerd Font", style = "Regular" }
-bold                  = { family = "CaskaydiaCove Nerd Font", style = "Bold" }
-italic                = { family = "CaskaydiaCove Nerd Font", style = "Italic" }
-bold_italic           = { family = "CaskaydiaCOve Nerd Font", style = "Bold Italic" }
-size                  = 10.0
-offset                = { x = 0, y = 0 }
-glyph_offset          = { x = 0, y = 0 }
-#builtin_box_drawing   = true
+size = 8.8
 
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "CaskaydiaCOve Nerd Font"
+style = "Bold Italic"
+
+[font.offset]
+x = 0
+y = 0
+
+[font.glyph_offset]
+x = 0
+y = 0
 
 [general]
 import = ["~/.cache/wal/colors-alacritty.toml"]
 
 [bell]
-animation             = "EaseOutExpo"
-duration              = 0
-color                 = "#C0C5CE"
-command               = { program = "notify-send", args = ["alacritty", "bell",] }
+animation = "EaseOutExpo"
+duration = 0
+color = "#C0C5CE"
+
+[bell.command]
+program = "notify-send"
+args = ["alacritty", "bell"]
 
 [selection]
-#semantic_escape_chars = ",│‘|:"' ()[]{}<>t"
-save_to_clipboard     = true
-
-[cursor.style]
-shape                 = "Beam"
-blinking              = "Always"
-
-[cursor.vi_mode_style]
-shape                 = "Block"
-blinking              = "Off"
+save_to_clipboard = true
 
 [cursor]
-blink_interval        = 500
-blink_timeout         = 0
-#unfocused_hollow      = true
-#thickness             = 0.15
+blink_interval = 500
+blink_timeout = 0
 
-[terminal]
-#osc52                 = "OnlyCopy"
+[cursor.style]
+shape = "Beam"
+blinking = "Always"
+
+[cursor.vi_mode_style]
+shape = "Block"
+blinking = "Off"
 
 [mouse]
-hide_when_typing      = true
-bindings = [
-  { mouse = "Middle", action = "PasteSelection" },
-]
+hide_when_typing = true
 
-[hints]
-#alphabet              = "jfkdls;ahgurieowpq"
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
 
-#[[hints.enabled]]
-#command               = "xdg-open"
-## command             = "open" # On macOS
-## command             = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
-#hyperlinks            = true
-#post_processing       = true
-#persist               = false
-#mouse.enabled         = true
-#binding               = { key = "U", mods = "Control|Shift" }
-#regex                 = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩‘]+"
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
 
-[keyboard]
-bindings = [
-  { key = "V",        mods = "Control|Shift", action = "Paste" },
-  { key = "C",        mods = "Control|Shift", action = "Copy" },
-  { key = "Paste",                            action = "Paste" },
-  { key = "Copy",                             action = "Copy" },
-  { key = "Insert",   mods = "Shift",         action = "PasteSelection" },
-  { key = "F",        mods = "Control|Shift", action = "SearchForward",     mode = "~Search" },
-  { key = "B",        mods = "Control|Shift", action = "SearchBackward",    mode = "~Search" },
-  { key = "Key0",     mods = "Control",       action = "ResetFontSize" },
-  { key = "Equals",   mods = "Control",       action = "IncreaseFontSize" },
-  { key = "Minus",    mods = "Control",       action = "DecreaseFontSize" },
-  { key = "L",        mods = "Control",       action = "ClearLogNotice" },
-  { key = "L",        mods = "Control",       chars  = "\f" },
-  { key = "PageUp",   mods = "Shift",         action = "ScrollPageUp",      mode = "~Alt" },
-  { key = "PageDown", mods = "Shift",         action = "ScrollPageDown",    mode = "~Alt" },
-  { key = "Up",       mods = "Shift",         action = "ScrollLineUp",      mode = "~Alt" },
-  { key = "Down",     mods = "Shift",         action = "ScrollLineDown",    mode = "~Alt" },
-  { key = "Home",     mods = "Shift",         action = "ScrollToTop",       mode = "~Alt" },
-  { key = "End",      mods = "Shift",         action = "ScrollToBottom",    mode = "~Alt" },
-]
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
 
+[[keyboard.bindings]]
+key = "Paste"
+action = "Paste"
 
-[debug]
-#render_timer          = false
-#persistent_logging    = false
-#log_level             = "Warn"
-#renderer              = "None"
-#print_events          = false
-#highlight_damage      = false
-#prefer_egl            = false
+[[keyboard.bindings]]
+key = "Copy"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Shift"
+action = "PasteSelection"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Control|Shift"
+action = "SearchForward"
+mode = "~Search"
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Control|Shift"
+action = "SearchBackward"
+mode = "~Search"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "L"
+mods = "Control"
+action = "ClearLogNotice"
+
+[[keyboard.bindings]]
+key = "L"
+mods = "Control"
+chars = "\f"
+
+[[keyboard.bindings]]
+key = "PageUp"
+mods = "Shift"
+action = "ScrollPageUp"
+mode = "~Alt"
+
+[[keyboard.bindings]]
+key = "PageDown"
+mods = "Shift"
+action = "ScrollPageDown"
+mode = "~Alt"
+
+[[keyboard.bindings]]
+key = "Up"
+mods = "Shift"
+action = "ScrollLineUp"
+mode = "~Alt"
+
+[[keyboard.bindings]]
+key = "Down"
+mods = "Shift"
+action = "ScrollLineDown"
+mode = "~Alt"
+
+[[keyboard.bindings]]
+key = "Home"
+mods = "Shift"
+action = "ScrollToTop"
+mode = "~Alt"
+
+[[keyboard.bindings]]
+key = "End"
+mods = "Shift"
+action = "ScrollToBottom"
+mode = "~Alt"
