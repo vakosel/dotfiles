@@ -9,7 +9,7 @@ from libqtile.lazy import lazy
 from qtile_extras import widget
 
 mod = "mod4"  # Sets mod key to SUPER/WINDOWS
-myTerm = "wezterm"  # My terminal of choice
+myTerm = "alacritty"  # My terminal of choice
 myBrowser = "brave"  # My browser of choice
 logout = "/home/vakosel/.config/rofi/powermenu/powermenu.sh"
 fileBrowser = "/usr/bin/thunar"
@@ -68,6 +68,12 @@ def maximize_by_switching_layout(qtile):
         qtile.current_group.layout = "max"
     elif current_layout_name == "max":
         qtile.current_group.layout = "monadtall"
+
+
+#  Flatpack dirs
+os.environ["XDG_DATA_DIRS"] = "/var/lib/flatpak/exports/share:" "/home/" + os.environ[
+    "USER"
+] + "/.local/share/flatpak/exports/share:" + os.environ.get("XDG_DATA_DIRS", "")
 
 
 alt = "mod1"

@@ -18,6 +18,7 @@ set -gx SUDO_EDITOR nvim
 set -gx MANPATH /usr/local/man:$MANPATH
 set -x MANPAGER "nvim +Man!"
 set -gx PTPYTHON_CONFIG_HOME $HOME/.config/ptpython
+set -x XDG_DATA_DIRS /var/lib/flatpak/exports/share ~/.local/share/flatpak/exports/share $XDG_DATA_DIRS
 
 # -----------------------------------------------------
 # SET FZF DEFAULT
