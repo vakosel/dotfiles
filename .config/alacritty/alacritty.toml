@@ -21,7 +21,7 @@ y = 2
 history = 65_535
 
 [font]
-size = 8.8
+size = 9.8
 
 [font.normal]
 family = "CaskaydiaCove Nerd Font"

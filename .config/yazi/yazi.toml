@@ -1,6 +1,4 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
-# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-#"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
 ratio = [2, 4, 3]
@@ -48,7 +46,7 @@ play = [{ run = 'mpv --force-window "$1"', orphan = true, for = "unix" }]
 
 [open]
 rules = [
-  { name = "*/", use = [
+  { url = "*/", use = [
     "open",
     "reveal",
   ] },
@@ -97,12 +95,12 @@ rules = [
     "reveal",
   ] },
 
-  { name = "*.desktop", use = [
+  { mime = "*.desktop", use = [
     "edit",
     "reveal",
   ] },
 
-  { name = "*", use = [
+  { mime = "*", use = [
     "open",
     "reveal",
   ] },
