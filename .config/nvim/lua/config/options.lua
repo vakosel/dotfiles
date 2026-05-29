@@ -77,10 +77,6 @@ o.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
 o.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
 o.shellquote = ""
 
--- disable some default providers
--- g.loaded_node_provider = 0
--- g.loaded_python3_provider = 0
-
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 local sep = is_windows and "\\" or "/"

@@ -18,21 +18,9 @@ return {
     -- You can also define any custom formatters here.
     formatters = {
       injected = { options = { ignore_errors = true } },
-      -- # Example of using dprint only when a dprint.json file is present
-      -- dprint = {
-      --   condition = function(ctx)
-      --     return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
-      --   end,
-      -- },
-      --
-      -- # Example of using shfmt with extra args
-      -- shfmt = {
-      --   prepend_args = { "-i", "2", "-ci" },
-      -- },
-      --
-      -- Python
+
       black = {
-        prpend_args = {
+        prepend_args = {
           "--fast",
           "--line_length",
           "80",
@@ -42,6 +30,7 @@ return {
         prepend_args = {
           "--profile",
           "black",
+          "--line-ending=auto",
         },
       },
     },
