@@ -594,6 +594,9 @@ floating_layout = layout.Floating(
         *layout.Floating.default_float_rules,
         Match(wm_class=re.compile("tk", re.I)),  # float all tk windows
         Match(wm_class="nvimterm"),  # nvim
+        Match(wm_class="Surge XT"),
+        Match(title="Surge XT"),
+
     ],
     auto_flat=True,
 )
