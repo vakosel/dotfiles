@@ -1,26 +1,29 @@
 #!/usr/bin/env bash
 
-from colors import COLORSCHEME
-
 ### AUTOSTART PROGRAMS ###
 
-# If the process doesn't exists, start one in background
+# Clean helper function that safely forces background execution
 run() {
-	if ! pgrep $1; then
-		$@ &
+	if ! pgrep -x "$1" >/dev/null; then
+		"$@" &
 	fi
 }
 
-# Just as the above, but if the process exists, restart it
-run-or-restart() {
-	if ! pgrep $1; then
-		$@ &
-	else
-		process-restart $@
-	fi
-}
-
+# 1. Core Window Manager Requirements (Fire these first)
 run picom -b
+run sxhkd &
+run dunst &
+
+# 2. Appearance and Themes
+run wal -R
+run conky -c "$HOME"/.config/conky/pywal_conky/qtconkyrc &
+
+# 3. System Tray Applets & Authentication Agent
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+run blueman-applet &
+run nm-applet &
+
+# vim: tabstop=4 shiftwidth=4 noexpandtab
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
 # 1. Uncomment to restore last saved wallpaper
@@ -29,24 +32,6 @@ run picom -b
 # find /usr/share/backgrounds/dtos-backgrounds/ -type f | shuf -n 1 | xargs xwallpaper --stretch &
 # 3. Uncomment to set wallpaper with nitrogen
 #cc nitrogen --restore &
-run wal -R
-
-run conky -c "$HOME"/.config/conky/pywal_conky/qtconkyrc
-
-# Graphical authentication agent
-run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# run xset b off # Disable beep
-
-run sxhkd # Simple X HKey daemon
-# run tmux new-session -d -s common # Tmux server
-run dunst # Notification daemon
-
-#  bluetooth
-run blueman-applet
-
-# run volumeicon # Volume icon
-run nm-applet # NetworkManager icon
 
 # Some process you may want to start with Qtile
 

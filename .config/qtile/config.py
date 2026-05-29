@@ -461,6 +461,7 @@ def init_widgets_list():
         ),
         widget.PulseVolume(
             fmt="🕫  Vol: {}",
+            update_interval=1.0,
             foreground=colors[7],
             padding=6,
             mouse_callbacks={
