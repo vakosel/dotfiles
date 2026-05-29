@@ -32,6 +32,12 @@ return {
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
               diagnosticMode = "openFilesOnly",
+              inlayHints = {
+                variableTypes = false,
+                functionReturnTypes = false,
+                callArgumentNames = false,
+                genericTypes = false,
+              },
             },
           },
         },
