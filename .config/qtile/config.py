@@ -26,7 +26,10 @@ def float_python_gui(window):
             process = f.read().strip()
 
         # Float Tkinter windows
-        if window.window.get_wm_class() and "tk" in window.window.get_wm_class():
+        if (
+            window.window.get_wm_class()
+            and "tk" in window.window.get_wm_class()
+        ):
             window.enable_floating()
             return
 
@@ -71,9 +74,13 @@ def maximize_by_switching_layout(qtile):
 
 
 #  Flatpack dirs
-os.environ["XDG_DATA_DIRS"] = "/var/lib/flatpak/exports/share:" "/home/" + os.environ[
-    "USER"
-] + "/.local/share/flatpak/exports/share:" + os.environ.get("XDG_DATA_DIRS", "")
+os.environ["XDG_DATA_DIRS"] = (
+    "/var/lib/flatpak/exports/share:"
+    "/home/"
+    + os.environ["USER"]
+    + "/.local/share/flatpak/exports/share:"
+    + os.environ.get("XDG_DATA_DIRS", "")
+)
 
 
 alt = "mod1"
@@ -86,7 +93,12 @@ keys = [
         lazy.spawn("wezterm start --class nvimterm"),
         desc="Floating Neovim terminal",
     ),
-    Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun"), desc="Run Launcher"),
+    Key(
+        [mod, "shift"],
+        "Return",
+        lazy.spawn("rofi -show drun"),
+        desc="Run Launcher",
+    ),
     Key([mod], "w", lazy.spawn(myBrowser), desc="Web browser"),
     Key([mod], "e", lazy.spawn(fileBrowser), desc="Thunar"),
     Key(
@@ -99,7 +111,12 @@ keys = [
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.spawn(logout), desc="Logout menu"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key(
+        [mod],
+        "r",
+        lazy.spawncmd(),
+        desc="Spawn a command using a prompt widget",
+    ),
     # Switch between windows
     # Some layouts like 'monadtall' only need to use j/k to move
     # through the stack, but other layouts like 'columns' will
@@ -108,7 +125,12 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    Key(
+        [mod],
+        "space",
+        lazy.layout.next(),
+        desc="Move window focus to other window",
+    ),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key(
@@ -175,14 +197,29 @@ keys = [
     ),
     # Grow windows up, down, left, right.  Only works in certain layouts.
     # Works in 'bsp' and 'columns' layout.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key(
-        [mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"
+        [mod, "control"],
+        "h",
+        lazy.layout.grow_left(),
+        desc="Grow window to the left",
     ),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key(
+        [mod, "control"],
+        "l",
+        lazy.layout.grow_right(),
+        desc="Grow window to the right",
+    ),
+    Key(
+        [mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"
+    ),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod], "m", lazy.layout.maximize(), desc="Toggle between min and max sizes"),
+    Key(
+        [mod],
+        "m",
+        lazy.layout.maximize(),
+        desc="Toggle between min and max sizes",
+    ),
     Key([mod], "t", lazy.window.toggle_floating(), desc="toggle floating"),
     Key(
         [mod],
@@ -223,7 +260,9 @@ keys = [
             Key(
                 [],
                 "p",
-                lazy.spawn("/home/vakosel/Scripts/qtradio/toggle_play_pause.sh"),
+                lazy.spawn(
+                    "/home/vakosel/Scripts/qtradio/toggle_play_pause.sh"
+                ),
                 desc="Translate text",
             ),
             Key(
@@ -377,7 +416,9 @@ def show_full_radio_song_notification():
 # --- End Helper Functions ---
 
 
-widget_defaults = dict(font="Ubuntu Bold", fontsize=12, padding=0, background=colors[0])
+widget_defaults = dict(
+    font="Ubuntu Bold", fontsize=12, padding=0, background=colors[0]
+)
 
 extension_defaults = widget_defaults.copy()
 
@@ -576,7 +617,10 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+        [mod],
+        "Button3",
+        lazy.window.set_size_floating(),
+        start=lazy.window.get_size(),
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
@@ -594,20 +638,32 @@ floating_layout = layout.Floating(
         *layout.Floating.default_float_rules,
         Match(wm_class=re.compile("tk", re.I)),  # float all tk windows
         Match(wm_class="nvimterm"),  # nvim
+        #    Surge XT Rules
+        Match(wm_class="org.surge_synth_team.surge-xt"),
         Match(wm_class="Surge XT"),
         Match(title="Surge XT"),
-
+        Match(func=lambda c: bool(c.is_transient_for())),
+        # 🌟 ADD THESE RULES FOR POPUPS AND MENUS:
+        Match(wm_type="dialog"),  # Catches popup dialog boxes
+        Match(wm_type="utility"),  # Catches floating tool windows
+        Match(wm_type="menu"),  # Catches dropdown menus
+        Match(wm_type="dropdown"),  # Catches secondary dropdown contexts
+        Match(role="pop-up"),  # Catches basic application popups
     ],
-    auto_flat=True,
+    no_reposition_rules=[
+        Match(func=lambda c: bool(c.is_transient_for())),
+        Match(wm_type="menu"),
+        Match(wm_type="dropdown"),
+    ],
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 titlebar = (True,)
 
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
-auto_minimize = True
+auto_minimize = False
+floats_kept_above = True
+
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None

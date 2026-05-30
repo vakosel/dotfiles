@@ -1,28 +1,26 @@
 return {
-  --  require("lazy.core.config").plugins["conform.nvim"],
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
   opts = {
     default_format_opts = {
       timeout_ms = 3000,
-      async = false, -- not recommended to change
-      quiet = false, -- not recommended to change
-      lsp_format = "fallback", -- not recommended to change
+      async = false,
+      quiet = false,
+      lsp_format = "fallback",
     },
     formatters_by_ft = {
       lua = { "stylua" },
       sh = { "shfmt" },
+      -- 🌟 sequential formatting: runs isort first, then black
       python = { "isort", "black" },
     },
-    -- The options you set here will be merged with the builtin formatters.
-    -- You can also define any custom formatters here.
     formatters = {
       injected = { options = { ignore_errors = true } },
 
       black = {
         prepend_args = {
           "--fast",
-          "--line_length",
+          "--line-length", -- 🌟 FIXED: Changed underscore (_) to a dash (-)
           "80",
         },
       },
@@ -33,6 +31,11 @@ return {
           "--line-ending=auto",
         },
       },
+    },
+    -- 🌟 This explicitly triggers the layout adjustments when saving the buffer
+    format_on_save = {
+      timeout_ms = 3000,
+      lsp_format = "fallback",
     },
   },
 }

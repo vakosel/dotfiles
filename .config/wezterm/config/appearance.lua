@@ -5,7 +5,7 @@ return {
    initial_cols = 160,
    initial_rows = 40,
    max_fps = 120,
-   front_end = 'WebGpu',
+   front_end = 'OpenGL',
    webgpu_power_preference = 'HighPerformance',
    --  webgpu_preferred_adapter = gpu_adapters:pick_best(),
    -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Dx12', 'IntegratedGpu'),

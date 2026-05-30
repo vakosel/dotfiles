@@ -8,8 +8,6 @@ return {
         "basedpyright",
         "ruff",
         "debugpy",
-        "black",
-        "isort",
       },
     },
   },

@@ -22,6 +22,7 @@ run conky -c "$HOME"/.config/conky/pywal_conky/qtconkyrc &
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 run blueman-applet &
 run nm-applet &
+qpwgraph -m -p ~/.config/studio_routing.qpwgraph &
 
 # vim: tabstop=4 shiftwidth=4 noexpandtab
 
