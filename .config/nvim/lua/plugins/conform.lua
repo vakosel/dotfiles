@@ -32,10 +32,5 @@ return {
         },
       },
     },
-    -- 🌟 This explicitly triggers the layout adjustments when saving the buffer
-    format_on_save = {
-      timeout_ms = 3000,
-      lsp_format = "fallback",
-    },
   },
 }

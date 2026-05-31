@@ -27,7 +27,7 @@ rofi.drun {
 }
 
 /*****----- Global Properties -----*****/
-@import	 "colors/wpg.rasi"
+@import	 "colors/wpg.rasi" 
 
 * {
     border-colour:               var(selected);

@@ -639,21 +639,20 @@ floating_layout = layout.Floating(
         Match(wm_class=re.compile("tk", re.I)),  # float all tk windows
         Match(wm_class="nvimterm"),  # nvim
         #    Surge XT Rules
-        Match(wm_class="org.surge_synth_team.surge-xt"),
         Match(wm_class="Surge XT"),
-        Match(title="Surge XT"),
-        Match(func=lambda c: bool(c.is_transient_for())),
+        Match(wm_class="surge-xt"),
         # 🌟 ADD THESE RULES FOR POPUPS AND MENUS:
-        Match(wm_type="dialog"),  # Catches popup dialog boxes
-        Match(wm_type="utility"),  # Catches floating tool windows
+        Match(func=lambda c: bool(c.is_transient_for())),
         Match(wm_type="menu"),  # Catches dropdown menus
         Match(wm_type="dropdown"),  # Catches secondary dropdown contexts
-        Match(role="pop-up"),  # Catches basic application popups
+        Match(wm_type="utility"),  # Catches floating tool windows
+        Match(wm_type="dialog"),  # Catches popup dialog boxes
     ],
     no_reposition_rules=[
         Match(func=lambda c: bool(c.is_transient_for())),
         Match(wm_type="menu"),
         Match(wm_type="dropdown"),
+        Match(wm_type="Surge XT"),
     ],
 )
 auto_fullscreen = True

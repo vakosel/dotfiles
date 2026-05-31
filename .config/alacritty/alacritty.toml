@@ -21,7 +21,7 @@ y = 2
 history = 65_535
 
 [font]
-size = 9.8
+size = 8.8
 
 [font.normal]
 family = "CaskaydiaCove Nerd Font"
@@ -48,7 +48,7 @@ x = 0
 y = 0
 
 [general]
-import = ["~/.cache/wal/colors-alacritty.toml"]
+import = ["/home/vakosel/.cache/wal/colors-alacritty.toml"]
 
 [bell]
 animation = "EaseOutExpo"
