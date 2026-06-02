@@ -22,7 +22,7 @@ function git-push
     end
 
     echo "🧠 Pushing nvim subtree..."
-    git subtree push --prefix=.config/nvim nvim-remote main --squash
+    git subtree push --prefix=.config/nvim nvim-remote main
     if test $status -eq 0
         echo "✅ All synced successfully"
     else
