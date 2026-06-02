@@ -4,6 +4,7 @@ import subprocess
 
 from colors import Wal_Colors as colors
 from libqtile import bar, hook, layout, qtile
+from libqtile import widget as base_widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from qtile_extras import widget
@@ -522,7 +523,7 @@ def init_widgets_list():
             padding=6,
             format="⏱  %a, %b %d - %H:%M",
         ),
-        # widget.Systray(padding=3),
+        base_widget.Systray(padding=5, background=colors[3], icon_size=20),
         widget.Spacer(length=8),
     ]
     return widgets_list
@@ -531,13 +532,6 @@ def init_widgets_list():
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1
-
-
-# All other monitors' bars will display everything but widgets 22 (systray) and 23 (spacer).
-def init_widgets_screen2():
-    widgets_screen2 = init_widgets_list()
-    del widgets_screen2[15:16]
-    return widgets_screen2
 
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
@@ -552,21 +546,7 @@ def init_screens():
                 margin=[8, 12, 0, 12],
                 size=28,
             )
-        ),
-        Screen(
-            top=bar.Bar(
-                widgets=init_widgets_screen2(),
-                margin=[8, 12, 0, 12],
-                size=28,
-            )
-        ),
-        Screen(
-            top=bar.Bar(
-                widgets=init_widgets_screen2(),
-                margin=[8, 12, 0, 12],
-                size=28,
-            )
-        ),
+        )
     ]
 
 
@@ -574,7 +554,6 @@ if __name__ in ["config", "__main__"]:
     screens = init_screens()
     widgets_list = init_widgets_list()
     widgets_screen1 = init_widgets_screen1()
-    widgets_screen2 = init_widgets_screen2()
 
 
 def window_to_prev_group(qtile):

@@ -1,48 +1,31 @@
 return {
   "saghen/blink.cmp",
   version = "*",
+
+  -- 1. Ensure the copilot completion bridge is installed
+  dependencies = {
+    { "giuxtaposition/blink-cmp-copilot" },
+  },
+
   opts = {
     sources = {
-      -- 1. Define the default list (order here doesn't strictly dictate priority)
-      default = { "lsp", "path", "snippets", "buffer", "copilot" },
+      -- 2. Your exact requested order: LSP and files first, Copilot dead last
+      default = { "lsp", "path", "buffer", "copilot" },
 
-      -- 2. Explicitly set priorities for all sources
       providers = {
-        lsp = {
-          name = "LSP",
-          enabled = true,
-          module = "blink.cmp.sources.lsp",
-          score_offset = 100, -- Highest priority: keep real code symbols at the top
-          kind = "Symbol",
-        },
-        path = {
-          name = "Path",
-          module = "blink.cmp.sources.path",
-          score_offset = 50, -- High priority for file paths
-        },
-        snippets = {
-          name = "Snippets",
-          module = "blink.cmp.sources.snippets",
-          score_offset = 20, -- Snippets above general text but below LSP
-        },
-        buffer = {
-          name = "Buffer",
-          module = "blink.cmp.sources.buffer",
-          score_offset = 0, -- Default baseline
-        },
         copilot = {
           name = "copilot",
-          module = "blink-copilot", -- Ensure you have blink-copilot installed
-          score_offset = -100, -- Lowest priority: always at the bottom
-          kind = "Copilot",
+          module = "blink-cmp-copilot",
+          score_offset = -100, -- Absolutely locks it to the bottom of the list
+          async = true,
         },
       },
     },
 
     completion = {
       menu = {
-        border = "rounded", -- Eye candy border
-        scrollbar = true, -- Functional scrolling
+        border = "rounded", -- Eye candy rounded windows
+        scrollbar = true,
         draw = {
           columns = {
             { "label", "label_description", gap = 1 },
@@ -54,22 +37,24 @@ return {
         auto_show = true,
         auto_show_delay_ms = 500,
         window = {
-          border = "rounded", -- Matching border for docs
-          scrollbar = true, -- Scroll through long docs
+          border = "rounded",
+          scrollbar = true,
         },
       },
+      -- 3. Turn inline ghost text ON
       ghost_text = {
-        enabled = false,
+        enabled = true,
       },
     },
 
     signature = {
       enabled = true,
       window = {
-        border = "rounded", -- Rounded borders for function signatures too
+        border = "rounded",
       },
     },
 
+    -- 4. Your working Super-Tab keymaps
     keymap = {
       preset = "super-tab",
       ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
