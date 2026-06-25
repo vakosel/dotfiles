@@ -3,41 +3,21 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    -- Note: Ensure zbirenbaum/copilot.lua or github/copilot.vim is installed
+    -- as codecompanion relies on them for authentication.
   },
 
   opts = function()
-    local is_windows = vim.fn.has("win32") == 1
-
-    ----------------------------------------------------------------------
-    -- STRATEGY SELECTION BY OS
-    ----------------------------------------------------------------------
-    -- We select the adapter string name based on the OS
-    local active_adapter = is_windows and "llamacpp" or "copilot"
-
     return {
       --------------------------------------------------------------------
       -- REGISTER THE ADAPTERS
       --------------------------------------------------------------------
       adapters = {
-        llamacpp = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "http://127.0.0.1:8080",
-              api_key = "dummy",
-            },
-            schema = {
-              model = {
-                default = "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
-              },
-            },
-          })
-        end,
-
         copilot = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               model = {
-                default = "gpt-4o",
+                default = "gpt-4o", -- Smooth, fast, and uniform across OSes
               },
             },
           })
@@ -45,12 +25,12 @@ return {
       },
 
       --------------------------------------------------------------------
-      -- STRATEGIES (Using String References)
+      -- STRATEGIES (Copilot everywhere)
       --------------------------------------------------------------------
       strategies = {
-        chat = { adapter = active_adapter },
-        inline = { adapter = active_adapter },
-        agent = { adapter = active_adapter },
+        chat = { adapter = "copilot" },
+        inline = { adapter = "copilot" },
+        agent = { adapter = "copilot" },
       },
 
       --------------------------------------------------------------------
