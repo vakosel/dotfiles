@@ -3,21 +3,30 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    -- Note: Ensure zbirenbaum/copilot.lua or github/copilot.vim is installed
-    -- as codecompanion relies on them for authentication.
   },
 
   opts = function()
     return {
       --------------------------------------------------------------------
-      -- REGISTER THE ADAPTERS
+      -- REGISTER MULTIPLE ADAPTERS (Copilot AND Claude)
       --------------------------------------------------------------------
       adapters = {
         copilot = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               model = {
-                default = "gpt-4o", -- Smooth, fast, and uniform across OSes
+                default = "gpt-4o",
+              },
+            },
+          })
+        end,
+
+        -- Requires `export ANTHROPIC_API_KEY="your_key"` in your .bashrc/.zshrc
+        anthropic = function()
+          return require("codecompanion.adapters").extend("anthropic", {
+            schema = {
+              model = {
+                default = "claude-3-5-sonnet-latest",
               },
             },
           })
@@ -25,16 +34,16 @@ return {
       },
 
       --------------------------------------------------------------------
-      -- STRATEGIES (Copilot everywhere)
+      -- DEFAULT INTERACTIONS (Latest CodeCompanion v19+ Structure)
       --------------------------------------------------------------------
-      strategies = {
+      interactions = {
         chat = { adapter = "copilot" },
         inline = { adapter = "copilot" },
         agent = { adapter = "copilot" },
       },
 
       --------------------------------------------------------------------
-      -- UI (minimal, stable)
+      -- UI Settings
       --------------------------------------------------------------------
       display = {
         chat = {
@@ -44,7 +53,7 @@ return {
             width = 0.5,
             height = 0.8,
           },
-          show_settings = false,
+          show_settings = false, -- Kept false so you can cleanly use 'ga' menu to swap
           render_headers = true,
         },
         diff = {
