@@ -44,3 +44,4 @@ venv/
 .env
 .vscode/
 .idea/
+.config/conky/pywal_conky/previews/
