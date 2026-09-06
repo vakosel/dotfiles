@@ -27,21 +27,20 @@ sixel_fraction = 15
 ueberzug_scale = 0.85
 ueberzug_offset = [25, 1, -0.5, -0.5]
 
-
 [opener]
 edit = [
-  { run = 'nvim "$1"', desc = "Edit with Neovim", block = true, for = "unix" },
+  { run = 'nvim "%s1"', desc = "Edit with Neovim", block = true, for = "unix" },
 ]
 
-open = [{ run = 'xdg-open "$1"', desc = "Open with system", for = "linux" }]
+open = [{ run = 'xdg-open "%s1"', desc = "Open with system", for = "linux" }]
 
 reveal = [
-  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal in file manager", for = "linux" },
+  { run = 'xdg-open "$(dirname "%s1")"', desc = "Reveal in file manager", for = "linux" },
 ]
 
-extract = [{ run = '7z x "$1"', desc = "Extract here", for = "unix" }]
+extract = [{ run = '7z x "%s1"', desc = "Extract here", for = "unix" }]
 
-play = [{ run = 'mpv --force-window "$1"', orphan = true, for = "unix" }]
+play = [{ run = 'mpv --force-window "%s1"', orphan = true, for = "unix" }]
 
 
 [open]
