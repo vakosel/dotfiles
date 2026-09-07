@@ -13,9 +13,6 @@ Scripts/qtradio/radio_stations.tmp
 .config/conky/pywal_conky/qtconkyrc
 Scripts/Pywal/
 
-# except templates specific files
-.config/wpg/templates/colors.fish.bak
-
 
 # XFCE auto-generated configs
 .config/xfce4/desktop/icons.screen0.yaml
