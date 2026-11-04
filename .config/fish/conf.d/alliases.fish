@@ -17,6 +17,7 @@ alias rofi='rofi -show drun'
 alias orphans='sudo pacman -Rns $(pacman -Qdtq)'
 alias vera='veracrypt --mount /dev/sdb1  ~/Downloads/veracrypt1 --filesystem=ntfs --protect-hidden=no  --pim=0 --keyfiles='
 alias verad='veracrypt -d'
+alias sculptforge="env MESA_GL_VERSION_OVERRIDE=3.3 ~/Apps/SculptForge/Sculptforge.AppImage"
 
 # -----------------------------------------------------
 # Changing "ls" to "eza"
@@ -90,7 +91,8 @@ alias mv='mv -i'
 alias add-to-path='set -U fish_user_paths (pwd) $fish_user_paths'
 
 # Update `PATH` variable
-alias path-update='set -gx PATH (bash -c "source ~/git/stuff/config/path; echo \$PATH")'
+alias path-update='set -gx PATH (bash -c "source ~/git/stuff/config/path
+ echo \$PATH")'
 
 #  * `fs` command to show free space on physical drives
 alias fs='df -h -x squashfs -x tmpfs -x devtmpfs'
